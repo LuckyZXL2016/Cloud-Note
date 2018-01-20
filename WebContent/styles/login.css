@@ -1,0 +1,186 @@
+﻿*{
+	padding:0;
+	margin:0;
+}
+body{
+	background:#232332;
+	overflow:hidden;
+	font-family:'微软雅黑';
+}
+.global{
+	width:1px;
+	height:1px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	background:red;
+}
+.log,.sig{
+	width:500px;
+	top:-14000%;
+	background:#eee;
+	position:absolute;
+	border-radius:5px;
+	overflow:hidden;
+	outline:0 none;
+	border:1px solid #fff;
+}
+/*--move in--*/
+.sig_in,.log_in{
+	left:-300000%;
+	animation:move_in 0.4s linear forwards;
+	-webkit-animation:move_in 0.4s linear forwards;
+	-moz-animation:move_in 0.4s linear forwards;
+	-o-animation:move_in 0.4s linear forwards;
+}
+@keyframes move_in{
+	frome{left:-300000%}
+	to{left:-25000%}
+}
+@-webkit-keyframes move_in{
+	frome{left:-300000%}
+	to{left:-25000%}
+}
+@-moz-keyframes move_in{
+	frome{left:-300000%}
+	to{left:-25000%}
+}
+@-o-keyframes move_in{
+	frome{left:-300000%}
+	to{left:-25000%}
+}
+/*--move in--*/
+/*--move out--*/
+.sig_out,.log_out{
+	left:-25000%;
+	animation:move_out 1.4s linear forwards;
+	-webkit-animation:move_out 1.4s linear forwards;
+	-moz-animation:move_out 1.4s linear forwards;
+	-o-animation:move_out 1.4s linear forwards;
+}
+@keyframes move_out{
+	frome{left:-25000%}
+	to{left:1000000%}
+}
+@-webkit-keyframes move_out{
+	frome{left:-25000%}
+	to{left:1000000%}
+}
+@-moz-keyframes move_out{
+	frome{left:-25000%}
+	to{left:1000000%}
+}
+@-o-keyframes move_out{
+	frome{left:-25000%}
+	to{left:1000000%}
+}
+/*--move out--*/
+.shart{
+	animation:pc 4s linear infinite alternate;
+	-webkit-animation:pc 4s linear infinite alternate;
+	-moz-animation:pc 4s linear infinite alternate;
+	-o-animation:pc 4s linear infinite alternate;
+}
+@keyframes pc{
+	frome{box-shadow:0 0 0 #fff;}
+	to{box-shadow:0 0 50px #fff;}
+}
+@-webkit-keyframes pc{
+	frome{box-shadow:0 0 0 #fff;}
+	to{box-shadow:0 0 50px #fff;}
+}
+@-moz-keyframes pc{
+	frome{box-shadow:0 0 0 #fff;}
+	to{box-shadow:0 0 50px #fff;}
+}
+@-o-keyframes pc{
+	frome{box-shadow:0 0 0 #fff;}
+	to{box-shadow:0 0 50px #fff;}
+}
+dt{
+	margin-bottom:20px;
+}
+.header{
+	height:55px;
+	color:#eee;
+	background:#13A89E;
+}
+h3{
+	line-height:55px;
+	font-family:'宋体';
+	font-size:25px;
+	font-weight:400;
+	text-indent:1.5em;
+}
+input[type=text],input[type=password]{
+	height:30px;
+	width:250px;
+	padding:0 5px;
+	border:1px solid #13A89E;
+	border-radius:3px;
+	letter-spacing:0.01em;
+}
+input[type=button]{
+	width:120px;
+	height:30px;
+	border:1px solid #13A89E;
+	border-radius:3px;
+	cursor:pointer;
+	font-size:16px;
+	color:#13A89E;
+	margin-left:120px;
+	transition:all 0.4s;
+}
+input[type=button]:hover{
+	background:#13A89E;
+	color:#fff;
+}
+.letter,.password{
+	color:#13A89E;
+	text-indent:4em;
+	position:relative;
+}
+.password{
+	text-indent:2em;
+}
+#sig_in,#back{
+	margin-left:18px;
+}
+.warning{
+	position:absolute;
+	text-indent:0;
+	height:32px;
+	line-height:32px;
+	right:10px;
+	top:0;
+	color:red;
+	font-size:14px;
+	display:none;
+}
+.warning span{
+	animation:emo .5s linear infinite alternate;
+	-webkit-animation:emo .5s linear infinite alternate;
+	-moz-animation:emo .5s linear infinite alternate;
+	-o-animation:emo .5s linear infinite alternate;
+}
+@keyframes emo{
+	from {opacity:0;}
+	to {opacity:1;}
+}
+@-webkit-keyframes emo{
+	from {opacity:0;}
+	to {opacity:1;}
+}
+@-moz-keyframes emo{
+	from {opacity:0;}
+	to {opacity:1;}
+}
+@-o-keyframes emo{
+	from {opacity:0;}
+	to {opacity:1;}
+}
+/*----*/
+.log_in{
+	z-index:1;
+}
+/*----*/

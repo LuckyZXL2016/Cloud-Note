@@ -1,0 +1,189 @@
+text-rowhtml,body,div,p,a,img,h2,h1{margin:0;padding:0;}
+img{border:none;outline:none;}
+body{font-size:12px;font-family:微软雅黑;text-algin:center;}
+a{text-decoration:none;outline:none;}
+.wrap,.bd-login-main,.bd-feture-main,.ft-nav{margin:0 auto;}
+.wrap{width:960px;margin:0 auto;}
+.btn{
+    background:url(../images/aa.png);
+    font-size:0;
+    line-height:0;
+    outline:none;
+    cursor:pointer;
+}
+.btn2{
+    background:url(../images/zhuce.png);
+    outline:none;
+     font-size:0;
+    line-height:0;
+    cursor:pointer;
+    margin-left:10px;
+     height: 38px;
+    width: 150px;
+}
+.loading *{
+    display: none;
+}
+
+.hd,.bd,.ft{text-align:left;}
+.hd{background:url(../images/cccccc.png);height:58px; repeat-x;line-height:60px;font-size:14px;}
+.hd .hd-main{position:relative;padding:0 20px;}
+.hd .nav{position:absolute;right:20px;top:0px;}
+.hd .nav a{color:#707070;}
+
+.bd .bd-login{
+    background-color:#7bc5ff;
+    height:470px;
+    font-size:14px;
+    overflow:hidden;
+}
+.bd .bd-login-main{
+    width:789px;
+    height:366px;
+    margin:50px auto;
+    border-radius:5px;
+    border:1px solid #578bb4;
+    background-color:#ffffff;
+}
+
+.login-top {
+    height: 30px;
+    line-height: 30px;
+    width: 550px;
+    margin: 20px auto -20px;
+    color: #345501;
+    text-align: center;
+    font: bold 14px '微软雅黑';
+    display: none;
+}
+.login-top p {
+    display: none;
+}
+
+
+.login-left,.login-right,.login-middle{float:left;}
+.bd-login-main h2{font-size:16px;font-weight:500;margin-bottom:20px;}
+.login-left{
+    padding:45px 38px 45px 62px;
+}
+.login-left .row{margin-bottom:25px;}
+.login-left .text-row{
+    height:37px;
+    width:324px;
+    border:1px solid #bbc2c6;
+    border-radius:8px;
+    line-height:37px;
+}
+.login-left .text{
+    width:300px;
+    padding:0 12px;
+    line-height:15px;
+    border:0px;
+    outline:none;
+}
+.login-left .btn{
+    display:inline-block;
+    width:152px;
+    height:40px;
+}
+.login-left .login-btn{
+    border: none;
+    float: left;
+    background-position:0px 0px;
+}
+.login-left .login-btn:hover{
+    background-position:0px -41px;
+}
+.login-left .login-btn:active{
+    background-position:0px -82px;
+}
+.login-left .regist-btn{
+    background-position:-152px 0px;
+    float: left;
+    margin-left:15px;
+}
+.login-left .regist-btn:hover{
+    background-position:-152px -41px;
+}
+.login-left .regist-btn:active{
+    background-position:-152px -82px;
+}
+.login-left .login-nopassword{
+    color:#007ac6;
+    position: absolute;
+    right: 0;
+}
+.login-left .check-row{
+    font-size:12px;
+    position:relative;
+}
+.login-left .login-label{
+    color:#666666;
+}
+.login-left .login-checkbox{
+    outline:none;
+    vertical-align:-2px;
+}
+.login-left .login-error{
+    color:#fc4343;
+    margin-left:30px;
+    display:none;
+}
+.login-right{
+    padding:45px 0px 45px 38px;
+}
+.login-right .btn{
+    display:block;
+    width:261px;
+    height:48px;
+    margin-bottom:11px;
+}
+.login-right .sina-btn{
+    background-position:-305px 0px;
+}
+.login-right .sina-btn:hover{
+    background-position:-305px -49px;
+}
+.login-right .qq-btn{
+    background-position:-567px 0px;
+}
+.login-right .qq-btn:hover{
+    background-position:-567px -49px;
+}
+
+.login-right .tqq-btn{
+    background-position:-829px 0px;
+}
+.login-right .tqq-btn:hover{
+    background-position:-829px -49px;
+}
+.login-right .hw-btn{
+    display: none;
+    background-position: -1091px 0px;
+}
+.login-right .hw-btn:hover{
+    background-position: -1091px -49px;
+}
+
+.login-middle{
+    background-color:#d8dee1;
+    width:1px;
+    height:265px;
+    margin-top:45px;
+}
+.bd-feture-main,.ft-nav{text-align:center;}
+.bd-feture-main{
+    clear:both;
+    padding-top:50px;
+}
+.ft-nav a,.ft-nav{color:#898989;}
+/*domain selector*/
+.domainSelector, .domainSelector *{font-size:12px; line-height:normal;}
+.domainSelector {border:1px solid #bbc2c6; width:165px;overflow:hidden;}
+.domainSelector .title {height:15px;padding:3px 0 3px 2px;color:#2B2B2B;background:none repeat scroll 0 0 #F6F6F6;}
+.domainSelector table td table td {padding:3px;}
+.domainSelector {position:absolute;margin-top:12px;}
+.placeholder{
+    color:rgb(170, 170, 170);
+}
+/*domain selector end*/

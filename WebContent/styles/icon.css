@@ -1,0 +1,88 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.icon{
+	font-size:18px;
+	font-weight:400;
+	font-family:icon;
+	font-style:normal;
+	margin:0 5px;
+}
+.li_action .icon{
+	margin:0;
+}
+.i_setting:before{
+	content:'\f013';
+}
+.i_caret_down:before{
+	content:'\f107';
+}
+.i_logout:before{
+	content:'\f08b';
+}
+.i_plus:before{
+	content:'\f067';
+}
+.i_book:before{
+	content:'\f02d';
+}
+.i_delete:before{
+	content:'\f00d';
+}
+.i_recycle:before{
+	content:'\f014';
+}
+.i_star:before{
+	content:'\f006';
+}
+.i_action:before{
+	content:'\f0c0';
+}
+.i_note:before{
+	content:'\f0f6';
+}
+.i_more:before{
+	content:'\f104';
+}
+.i_share:before{
+	content:'\f0e8';
+}
+.i_move:before{
+	content:'\f079';
+}
+.i_quoteLeft:before{
+	content:'\f10d';
+	color:#bbb;
+}
+.i_quoteRight:before{
+	content:'\f10e';
+	color:#bbb;
+}
+.i_save:before{
+	content:'\f11e';
+}
+.i_broke_404:before{
+	content:'\f127';
+}
+.i_broke_500:before{
+	content:'\f188';
+}
+.i_back:before{
+	content:'\f122';
+}
+.i_search:before{
+	content:'\f002';
+}
+.i_wait:before{
+	content:'\2000';
+}
+.i_global:before{
+	content:'\f0ac';
+}
+
+
+
+
+
+
+
+
