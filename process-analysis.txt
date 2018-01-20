@@ -1,0 +1,167 @@
+代码流程分析
+
+注：首先
+    1.创建hbase表语句
+		create 'nb','nbi'
+		create 'n','ni','ci'
+	2.配置hbase.properties
+	3.配置redis.properties
+
+
+1.笔记本操作
+1)创建笔记本
+	1、前台输入笔记本名
+	2、前台向后台传入的参数
+		笔记本的名字
+	3、后台封装
+		a、从session中获取用户名
+		b、创建时间戳
+		c、封装rowkey
+		d、保存到redis
+			key：用户名
+			value：list<rowkey|笔记本的名字|创建时间|状态>
+			步骤：
+			1、获取jedis连接
+			2、jedis.rpush(用户名, rowkey|笔记本的名字|创建时间|状态)
+			3、close
+		e、保存到hbase
+			rowkey：封装的rowkey
+			列：笔记本名字，创建时间、状态
+			步骤：
+			1、创建表链接
+			2、创建put(rowkey)
+			3、put.add(列)
+			4、table.put(put)
+			5、close
+		f、事务:
+ 			当redis失败后，所有步骤停止
+ 			当redis成功，hbase成功，即成功
+ 			当redis成功，hbase失败，删除redis的内容（lrem）
+
+2)删除笔记本
+	1、前台传过来的参数：笔记本的rowkey，笔记本的名字
+	2、后台：
+		a、action查询笔记本下是否有笔记，有笔记返回false
+	3、删除redis
+	a、拼串：rowkey|笔记本名|时间戳|状态
+	b、jedis.lrem(用户名，删除几次，rowkey|笔记本名|时间戳|状态)
+4、删除hbase
+	a、获取rowkey
+	b、删除
+5、事务：
+	删除都成功
+	redis不成功，都不成功
+	redis成功，hbase不成功，增加redis
+
+3)修改笔记本
+	1、前台输入：新的笔记本的名字
+	2、前台向后抬传入的参数：新的笔记本的名字，旧的笔记本的名，rowkey
+	3、后台的action处理
+		a、分割rowkey，获取时间戳，用户名
+	4、redis
+		a、拼装旧的串：rowkey|旧的名字|时间戳|状态
+		b、拼新串：rowkey|新的名字|时间戳|状态
+		c、删除旧的串：jedis.lrem( 用户名，几次，旧串)
+		d、加新的串：jedis.rpush(用户名，新串)
+	5、hbase
+		通过rowkey设置新的名字
+		封装put（rowkey）
+		put.add(新的名字)
+		table.put(put);
+	6、事务：
+		redis成功，hbase成功
+		redis失败，都失败
+		redis成功，hbase失败，删除redis的新的名字，添加旧的名字
+
+4)查询用户的所有笔记本
+	1、前台传过来的参数：空
+	2、查询redis
+		a、从session中获取用户名
+		b、以用户名作为key，去redis查询
+		c、jedis.lrange(用户名，0，llen（用户名）)；
+		d、返回前台
+	3、如果redis失败，从hbase查
+		1、获取表链接htable
+		2、创建rowkey过滤器，前缀是”用户名_*”
+		3、循环处理结果
+
+2.笔记操作
+5)查询笔记本下的所有笔记列表
+	1、前台传过来的参数：笔记本的rowkey
+	2、后台处理hbase
+		a、创建nb表的表链接
+		b、创建get（笔记本的rowkey）
+		c、处理result结果集，json
+		d、将json转换为list
+		e、处理list中的值，用“|”分割每列，封装到n个note中
+		f、返回前台
+
+6)增加笔记
+	1、前台输入的参数：笔记的名字
+	2、前台传到后台的参数：笔记本的rowkey，笔记的名字
+	3、action的处理
+		a、创建时间戳
+		b、用用户名和时间戳拼装笔记的rowkey
+	4、后台处理hbase的nb表
+		将笔记添加到笔记本的笔记列表中
+		a、获取表链接
+		b、取出笔记本的历史笔记列表
+		c、将历史笔记列表中添加新的笔记信息
+		d、创建put（笔记本的rowkey）
+		e、put.add(新的笔记列表)
+		f、close
+	5、hbase的n表
+		a、将笔记的信息存到n表中
+
+7)查询笔记详情
+	1、前台传到后台的参数：笔记的rowkey
+	2、后台处理：
+		查询笔记表
+
+8)修改笔记
+	1、前台输入的参数：笔记的名字，笔记的内容
+	2、前台向后台传的参数：笔记本的rowkey、笔记的rowkey、新笔记的名字、笔记的内容、旧的笔记的名字
+	3、修改nb表
+		a、获取nb表的表链接
+		b、查询历史的笔记信息
+		c、将笔记信息装成list
+		d、拼装旧的笔记信息的串
+		e、list.remove(旧的笔记信息的串)
+		f、拼装新的笔记信息的串
+		g、list.add(新的笔记信息的串)
+		h、添加操作htable.put().
+	4、修改n表
+		重新添加笔记名字和笔记内容
+	5、事务：
+		a、nb表失败，都失败
+		b、都成功
+		c、nb成功，n失败，还原nb表的笔记列表
+
+9)迁移笔记
+	1、前台传过来的参数：旧的笔记本的rowkey，新的笔记本的rowkey，笔记的rowkey，笔记的名字
+	2、后台处理
+		拼装笔记信息的串
+	3、修改旧的笔记本
+		a、将笔记本下的笔记列表查出来
+		b、删除笔记信息
+	4、修改新的笔记本
+		a、将笔记本下的笔记列表查出来
+		b、添加笔记信息
+	5、事务：
+		a、都成功
+		b、都失败
+		c、第一个操作成功，第二个操作失败，还原第一个操作
+
+10)彻底删除笔记
+	1、前台传过来的参数：笔记的rowkey，笔记的名字，笔记本的rowkey
+	2、后台处理（nb表）：
+		a、拼串
+		b、获取历史的笔记本的笔记列表list
+		c、将串从list中删除
+		d、保存list
+	3、后台处理（n表）：
+		a、通过rowkey删除笔记
+	4、事务：
+		a、都成功
+		b、都失败
+		c、笔记本成功，笔记失败，还原笔记本
